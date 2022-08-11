@@ -34,7 +34,7 @@ select * from teachers;
 
 -- Buat Tabel Courses
 CREATE TABLE courses (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id_ INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name varchar(20),
     teachers_id INT,
     total_students INT
