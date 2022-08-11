@@ -1,6 +1,6 @@
 -- Buat Tabel Teachers
 CREATE TABLE teachers(
-  ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR(50),
   school varchar(50) NOT NULL,
@@ -34,7 +34,7 @@ select * from teachers;
 
 -- Buat Tabel Courses
 CREATE TABLE courses (
-    id_ INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name varchar(20),
     teachers_id INT,
     total_students INT
@@ -65,12 +65,11 @@ INSERT INTO courses (name, teachers_id, total_students)
 
 select * from courses;
 
-create table teachers_and_courses
-as
-SELECT *
-FROM teachers 
-inner JOIN courses ON teachers.ID=courses.teachers_id
-order by salary desc;
+select * from teachers
+INNER JOIN courses
+on teachers.id = courses.teachers_id
+where salary in (select max(salary) from teachers
+                inner join courses on teachers.id = courses.teachers_id
+                group by name)
+group by name
 
-select * from teachers_and_courses
-group by name;
